@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Album Basic Details</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f0f2f5;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            max-width: 850px;
+            margin-top: 50px;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            font-size: 28px;
+        }
+
+        h4 {
+            font-weight: 600;
+            margin-top: 40px;
+            color: #34495e;
+            font-size: 24px;
+        }
+
+        .form-label {
+            font-weight: 500;
+            font-size: 16px;
+            color: #495057;
+        }
+
+        .form-control, .form-select {
+            border-radius: 8px;
+            font-size: 15px;
+            padding: 10px 15px;
+        }
+
+        .btn-primary {
+            background-color: #3498db;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-small {
+            padding: 0.25rem 0.5rem; /* Adjust padding as needed */
+            font-size: 0.75rem; /* Adjust font size as needed */
+        }
+
+        .mb-3 {
+            margin-bottom: 25px;
+        }
+
+        hr {
+            border: 1px solid #dcdde1;
+            margin-top: 40px;
+        }
+
+        .info-text {
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+
+        .img-preview {
+            margin-top: 15px;
+            max-height: 200px;
+            display: block;
+            border-radius: 10px;
+            border: 2px solid #bdc3c7;
+        }
+
+        .upload-section {
+            margin-top: 40px;
+        }
+
+        .form-divider {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .form-divider hr {
+            width: 200px;
+            border: 1px solid #7f8c8d;
+        }
+
+        .form-divider span {
+            font-size: 18px;
+            color: #7f8c8d;
+            padding: 0 15px;
+            background: #f0f2f5;
+            position: relative;
+            top: -12px;
+        }
+
+        /* Add pointer cursor on hover */
+        input[type="date"] {
+            cursor: pointer;
+        }
+
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            h4 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Album Basic Details</h2>
+        <div id="error-message" style="font-size: 12px; color: red; display: none;">! All fields are mandatory.</div>
+        <form id="albumForm">
+            <!-- Album Title -->
+            <div class="mb-3">
+                <label for="albumTitle" class="form-label">Album Title</label>
+                <input type="text" class="form-control required-field" id="albumTitle" placeholder="Enter album title" required>
+            </div>
+            
+            <!-- Artist Name -->
+            <div class="mb-3">
+                <label for="artistName" class="form-label">Artist Name</label>
+                <input type="text" class="form-control required-field" id="artistName" placeholder="Enter artist name" required>
+            </div>
+            
+            <!-- Release Date -->
+            <div class="mb-3">
+                <label for="releaseDate" class="form-label">Release Date</label>
+                <input type="date" class="form-control required-field" id="releaseDate" required>
+            </div>
+            
+            <!-- Genre Selection -->
+            <div class="mb-3">
+                <label for="genre" class="form-label">Genre</label>
+                <select class="form-select required-field" id="genre" required>
+                    <option value="" disabled selected>Choose genre</option>
+                    <option value="ALTERNATIVE">Alternative</option>
+                    <option value="AUDIOBOOKS">Audiobooks</option>
+                    <option value="BLUES">Blues</option>
+                    <option value="CHILDRENS_MUSIC">Children's Music</option>
+                    <option value="COMEDY">Comedy</option>
+                    <option value="COUNTRY">Country</option>
+                    <option value="DANCE">Dance</option>
+                    <option value="ELECTRONIC">Electronic</option>
+                    <option value="FOLK">Folk</option>
+                    <option value="HIP_HOP_RAP">Hip Hop/Rap</option>
+                    <option value="HOLIDAY">Holiday</option>
+                    <option value="INSPIRATIONAL">Inspirational</option>
+                    <option value="JAZZ">Jazz</option>
+                    <option value="LATIN">Latin</option>
+                    <option value="NEW_AGE">New Age</option>
+                    <option value="OPERA">Opera</option>
+                    <option value="POP">Pop</option>
+                    <option value="R_B_SOUL">R&amp;B/Soul</option>
+                    <option value="REGGAE">Reggae</option>
+                    <option value="ROCK">Rock</option>
+                    <option value="SOUNDTRACK">Soundtrack</option>
+                    <option value="SPOKEN_WORD">Spoken Word</option>
+                    <option value="VOCAL">Vocal</option>
+                    <option value="WORLD">World</option>
+                </select>
+            </div>
+
+            <!-- Album Art Upload -->
+            <div class="mb-3">
+                <label for="albumArt" class="form-label">Upload Album Art</label>
+                <input type="file" class="form-control required-field" id="albumArt" accept="image/jpeg,image/png" required>
+                <div class="info-text">* JPG & PNG extensions allowed | Dimensions: 1400x1400 - 6000x6000 pixels | Max Size: 10MB</div>
+                <img id="coverPreview" class="img-preview d-none" alt="Cover Preview">
+            </div>
+
+            <!-- Divider for visual separation -->
+            <div class="form-divider">
+                <hr>
+            </div>
+
+            <!-- Track Upload Section -->
+            <div class="upload-section">
+                <h2>Track Details</h2>
+
+                <!-- Language -->
+                <div class="mb-3">
+                    <label for="language" class="form-label">Language</label>
+                    <select class="form-select required-field" id="language" required>
+                        <option value="" disabled selected>Choose language</option>
+                        <script>
+                            const languages = ["Afrikaans","Albanian","Amharic","Arabic","Aragonese","Armenian","Asturian","Azerbaijani","Basque","Belarusian","Bengali","Bosnian","Breton","Bulgarian","Catalan","Central Kurdish","Chinese","Chinese (Hong Kong)","Chinese (Simplified)","Chinese (Traditional)","Corsican","Croatian","Czech","Danish","Dutch","English","English (Australia)","English (Canada)","English (India)","English (New Zealand)","English (South Africa)","English (United Kingdom)","English (United States)","Esperanto","Estonian","Faroese","Filipino","Finnish","French","French (Canada)","French (France)","French (Switzerland)","Galician","Georgian","German","German (Austria)","German (Germany)","German (Liechtenstein)","German (Switzerland)","Greek","Guarani","Gujarati","Hausa","Hawaiian","Hebrew","Hindi","Hungarian","Icelandic","Indonesian","Interlingua","Irish","Italian","Italian (Italy)","Italian (Switzerland)","Japanese","Kannada","Kazakh","Khmer","Korean","Kurdish","Kyrgyz","Lao","Latin","Latvian","Lingala","Lithuanian","Macedonian","Malay","Malayalam","Maltese","Marathi","Mongolian","Nepali","Norwegian","Norwegian Bokmål","Norwegian Nynorsk","Occitan","Oriya","Oromo","Pashto","Persian","Polish","Portuguese","Portuguese (Brazil)","Portuguese (Portugal)","Punjabi","Quechua","Romanian","Romanian (Moldova)","Romansh","Russian","Scottish Gaelic","Serbian","Serbo","Shona","Sindhi","Sinhala","Slovak","Slovenian","Somali","Southern Sotho","Spanish","Spanish (Argentina)","Spanish (Latin America)","Spanish (Mexico)","Spanish (Spain)","Spanish (United States)","Sundanese","Swahili","Swedish","Tajik","Tamil","Tatar","Telugu","Thai","Tigrinya","Tongan","Turkish","Turkmen","Twi","Ukrainian","Urdu","Uyghur","Uzbek","Vietnamese","Walloon","Welsh","Western Frisian","Xhosa","Yiddish","Yoruba","Zulu"];
+                            languages.forEach(language => {
+                                document.write(`<option value="${language}">${language}</option>`);
+                            });
+                         </script>
+                    </select>
+                </div>
+                
+                <!-- Recording Country -->
+                <div class="mb-3">
+                    <label for="recordingCountry" class="form-label">Recording Country</label>
+                    <select class="form-select required-field" id="recordingCountry" required>
+                        <option value="" disabled selected>Choose country</option>
+                        <script>
+                            const countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre &amp; Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent","St. Lucia","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad &amp; Tobago","Tunisia","Turkey","Turkmenistan","Turks &amp; Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+                            countries.forEach(country => {
+                                document.write(`<option value="${country}">${country}</option>`);
+                            });
+                         </script>
+                    </select>
+                </div>
+
+                <!-- Recording Year -->
+                <div class="mb-3">
+                    <label for="recordingYear" class="form-label">Recording Year</label>
+                    <select class="form-select required-field" id="recordingYear" required>
+                        <option value="" disabled selected>Choose year</option>
+                        <script>
+                            const currentYear = new Date().getFullYear();
+                            for (let year = currentYear; year >= 2000; year--) {
+                                document.write(`<option value="${year}">${year}</option>`);
+                            }
+                        </script>
+                    </select>
+                </div>
+
+                <!-- Track Upload -->
+                <div class="mb-3">
+                    <label for="trackFile" class="form-label">Upload Track</label>
+                    <input type="file" class="form-control required-field" id="trackFile" accept="audio/*" required>
+                    <audio id="audioPreview" class="audio-preview d-none mt-3" controls>
+                        <source id="audioSource" src="" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+
+            <!-- Divider for visual separation -->
+            <div class="form-divider">
+                <hr>
+            </div>
+
+            <!-- Artists and collaborotators -->
+            <div class="upload-section">
+                <h2>Artist(s) and Collaborators</h2>
+
+                <!-- Primary Artist(s) -->
+                <div class="mb-2" id="primaryArtistsContainer">
+                    <label for="primaryArtists" class="form-label">Primary Artist(s)</label>
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control required-field" placeholder="Enter primary artist" aria-label="Primary Artist" required>
+                        <button type="button" class="btn btn-danger remove-artist-btn" style="display:none;">Remove</button>
+                    </div>
+                </div>
+                <div style="text-align: right;"><button type="button" class="btn btn-secondary btn-sm mb-2" id="addPrimaryArtist">+ Add new</button></div>
+
+                <!-- Featuring Artist(s) -->
+                <div class="mb-2" id="featuringArtistsContainer">
+                    <label class="form-label">Featuring Artist(s)</label>
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control required-field" placeholder="Enter featuring artist" aria-label="Featuring Artist" required>
+                        <button type="button" class="btn btn-danger remove-artist-btn" style="display:none;">Remove</button>
+                    </div>
+                </div>
+                <div style="text-align: right;"><button type="button" class="btn btn-secondary btn-sm mb-2" id="addFeaturingArtist">+ Add new</button></div>
+
+                <!-- Lyricist(s) -->
+                <div class="mb-2" id="lyricistsContainer">
+                    <label class="form-label">Lyricist(s)</label>
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control required-field" placeholder="Enter lyricist" aria-label="Lyricist" required>
+                        <button type="button" class="btn btn-danger remove-artist-btn" style="display:none;">Remove</button>
+                    </div>
+                </div>
+                <div style="text-align: right;"><button type="button" class="btn btn-secondary btn-sm mb-2" id="addLyricist">+ Add new</button></div>
+
+                <!-- Composer(s) -->
+                <div class="mb-2" id="composersContainer">
+                    <label class="form-label">Composer(s)</label>
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control required-field" placeholder="Enter composer" aria-label="Composer" required>
+                        <button type="button" class="btn btn-danger remove-artist-btn" style="display:none;">Remove</button>
+                    </div>
+                </div>
+                <div style="text-align: right;"><button type="button" class="btn btn-secondary btn-sm mb-2" id="addComposer">+ Add new</button></div>
+
+                <!-- Performer(s) -->
+                <div class="mb-2" id="performersContainer">
+                    <label class="form-label">Performer(s)</label>
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control required-field" placeholder="Enter performer" aria-label="Performer" required>
+                        <button type="button" class="btn btn-danger remove-artist-btn" style="display:none;">Remove</button>
+                    </div>
+                </div>
+                <div style="text-align: right;"><button type="button" class="btn btn-secondary btn-sm mb-2" id="addPerformer">+ Add new</button></div>
+
+                <!-- Producer(s) -->
+                <div class="mb-2" id="producersContainer">
+                    <label class="form-label">Producer(s)</label>
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control required-field" placeholder="Enter producer" aria-label="Producer" required>
+                        <button type="button" class="btn btn-danger remove-artist-btn" style="display:none;">Remove</button>
+                    </div>
+                </div>
+                <div style="text-align: right;"><button type="button" class="btn btn-secondary btn-sm mb-2" id="addProducer">+ Add new</button></div>
+
+                <!-- Other Collaborator(s) -->
+                <div class="mb-2" id="otherCollaboratorsContainer">
+                    <label class="form-label">Other Collaborator(s)</label>
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control required-field" placeholder="Enter other collaborator" aria-label="Other Collaborator">
+                        <button type="button" class="btn btn-danger remove-artist-btn" style="display:none;">Remove</button>
+                    </div>
+                </div>
+                <div style="text-align: right;"><button type="button" class="btn btn-secondary btn-sm mb-2" id="addOtherCollaborator">+ Add new</button></div>
+            </div>
+
+            <!-- Consumer Release Date with Info -->
+            <div class="mb-3">
+                <label for="consumerReleaseDate" class="form-label">Consumer Release Date</label>
+                <input type="date" class="form-control required-field" id="consumerReleaseDate" required>
+                <div class="info-text">* The Consumer Release Date must be at least 5 weeks from today.</div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary w-100 submitButton">Submit</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for File Preview and Validation -->
+    <script>
+        const albumArtInput = document.getElementById('albumArt');
+        const coverPreview = document.getElementById('coverPreview');
+
+        albumArtInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+
+            if (file) {
+                // Check file size (Max: 10MB)
+                if (file.size > 10 * 1024 * 1024) {
+                    alert("File size exceeds 10MB.");
+                    albumArtInput.value = '';
+                    coverPreview.classList.add('d-none');
+                    return;
+                }
+
+                // Check image dimensions
+                const img = new Image();
+                img.src = URL.createObjectURL(file);
+                img.onload = function() {
+                    const { width, height } = img;
+                    if (width < 1400 || height < 1400 || width > 6000 || height > 6000) {
+                        alert("Image dimensions must be between 1400x1400 and 6000x6000 pixels.");
+                        albumArtInput.value = '';
+                        coverPreview.classList.add('d-none');
+                    } else {
+                        coverPreview.src = img.src;
+                        coverPreview.classList.remove('d-none');
+                    }
+                };
+            } else {
+                coverPreview.src = '';
+                coverPreview.classList.add('d-none');
+            }
+        });
+
+        // // Prevent multiple file uploads for album art
+        // albumArtInput.addEventListener('click', function() {
+        //     this.value = null;
+        // });
+
+        // Audio file preview
+        const audioFileInput = document.getElementById('trackFile');
+        const audioPreview = document.getElementById('audioPreview');
+        const audioSource = document.getElementById('audioSource');
+
+        audioFileInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+
+            if (file) {
+                // Set the audio source
+                audioSource.src = URL.createObjectURL(file);
+                audioPreview.classList.remove('d-none');
+                audioPreview.load(); // Load the new audio source
+            } else {
+                // Reset audio preview if no file is selected
+                audioSource.src = '';
+                audioPreview.classList.add('d-none');
+            }
+        });
+
+        // Add functionality for adding more artists and collaborators
+        function addArtist(containerId, buttonId, placeholder) {
+            const container = document.getElementById(containerId);
+            const inputGroup = document.createElement('div');
+            inputGroup.className = 'input-group mb-2';
+            inputGroup.innerHTML = `
+                <input type="text" class="form-control" placeholder="${placeholder}" aria-label="Name" required>
+                <button type="button" class="btn btn-danger remove-artist-btn btn-sm">Remove</button>
+            `;
+            container.appendChild(inputGroup);
+        }
+
+        // Add primary artist button event
+        document.getElementById('addPrimaryArtist').addEventListener('click', function() {
+            addArtist('primaryArtistsContainer', 'addPrimaryArtist', 'Enter primary artist');
+        });
+
+        // Add featuring artist button event
+        document.getElementById('addFeaturingArtist').addEventListener('click', function() {
+            addArtist('featuringArtistsContainer', 'addFeaturingArtist', 'Enter featuring artist');
+        });
+
+        // Add lyricist button event
+        document.getElementById('addLyricist').addEventListener('click', function() {
+            addArtist('lyricistsContainer', 'addLyricist', 'Enter lyricist');
+        });
+
+        // Add composer button event
+        document.getElementById('addComposer').addEventListener('click', function() {
+            addArtist('composersContainer', 'addComposer', 'Enter composer');
+        });
+
+        // Add performer button event
+        document.getElementById('addPerformer').addEventListener('click', function() {
+            addArtist('performersContainer', 'addPerformer', 'Enter performer');
+        });
+
+        // Add producer button event
+        document.getElementById('addProducer').addEventListener('click', function() {
+            addArtist('producersContainer', 'addProducer', 'Enter producer');
+        });
+
+        // Add other collaborator button event
+        document.getElementById('addOtherCollaborator').addEventListener('click', function() {
+            addArtist('otherCollaboratorsContainer', 'addOtherCollaborator', 'Enter other collaborator');
+        });
+
+        // Event delegation for removing artists and collaborators
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('remove-artist-btn')) {
+                const inputGroup = event.target.parentElement;
+                inputGroup.remove();
+            }
+        });
+
+        function setMinDate(Id, days) {
+            const input = document.getElementById(Id);
+            const today = new Date();
+            const minDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + days);
+            const minDateString = minDate.toISOString().split('T')[0];
+            input.setAttribute('min', minDateString);
+        }
+        // Set minimum Consumer Release Date to 5 weeks from today
+        setMinDate('consumerReleaseDate', 35);
+        setMinDate('releaseDate', 0);
+
+        const form = document.getElementById('albumForm');
+        const errorMessage = document.getElementById('error-message');
+        const requiredFields = document.querySelectorAll('.required-field');
+
+        // Function to check if all required fields are filled
+        function areFieldsFilled() {
+            return Array.from(requiredFields).every(field => {
+                if (field.type === "file") {
+                    return field.files.length > 0; // Check for file input
+                }
+                return field.value.trim() !== ""; // Check for other inputs
+            });
+        }
+
+        // Function to focus on the first empty field
+        function focusOnFirstEmptyField() {
+            for (const field of requiredFields) {
+                if (field.type === "file") {
+                    if (field.files.length === 0) { // If file input is empty
+                        field.focus();
+                        return;
+                    }
+                } else {
+                    if (field.value.trim() === "") { // If text input is empty
+                        field.focus();
+                        return;
+                    }
+                }
+            }
+        }
+
+        // Event listener for form submission
+        document.querySelector(".submitButton").addEventListener('click', function(event) {
+            // Reset the error message
+            errorMessage.style.display = 'none';
+
+            if (!areFieldsFilled()) {
+                // Prevent form submission
+                event.preventDefault();
+                // Show the error message
+                errorMessage.style.display = 'block';
+                // Focus on the first empty field
+                focusOnFirstEmptyField();
+            }
+        });
+
+        // Event listener for input events to hide error message
+        requiredFields.forEach(field => {
+            field.addEventListener('input', function() {
+                if (errorMessage.style.display === 'block') {
+                    errorMessage.style.display = 'none'; // Hide error message on input
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
